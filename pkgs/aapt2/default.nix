@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchurl, autoPatchelfHook, patchelf, unzip }:
+{ stdenv, lib, fetchurl, autoPatchelfHook, patchelf, libgcc, unzip }:
 
 stdenv.mkDerivation rec {
   name = "aapt2-${version}";
@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ autoPatchelfHook patchelf unzip ];
 
-  buildInputs = [ stdenv.cc.cc.lib ];
+  buildInputs = [ stdenv.cc.cc.lib libgcc ];
 
   unpackCmd = "unzip $curSrc -d ${name}";
 
